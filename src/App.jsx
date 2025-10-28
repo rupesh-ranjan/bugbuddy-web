@@ -1,7 +1,14 @@
-import "./App.css";
+import Navbar from "./components/Navbar.jsx";
 
 function App() {
-    return <h1>Welcome to BugBuddy</h1>;
+    return (
+        <>
+            <Navbar />
+            <div className="semibold justify-center text-center text-2xl">
+                Welcome to BugBuddy
+            </div>
+        </>
+    );
 }
 
 export default App;
