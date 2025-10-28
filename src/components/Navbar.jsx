@@ -1,4 +1,8 @@
+import { useSelector } from "react-redux";
+
 function Navbar() {
+    const user = useSelector((state) => state.user);
+    console.log(user);
     return (
         <div className="navbar bg-base-300 px-10">
             <div className="flex-1">
@@ -6,35 +10,38 @@ function Navbar() {
                     🐞 BugBuddy 👫
                 </a>
             </div>
-            <div className="flex-none gap-2">
-                <div className="dropdown dropdown-end">
-                    <label
-                        tabIndex={0}
-                        className="btn btn-ghost btn-circle avatar"
-                    >
-                        <div className="w-10 rounded-full">
-                            <img src="https://v3.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                        </div>
-                    </label>
-                    <ul
-                        tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-                    >
-                        <li>
-                            <a className="justify-between">
-                                Profile
-                                <span className="badge">New</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a>Settings</a>
-                        </li>
-                        <li>
-                            <a>Logout</a>
-                        </li>
-                    </ul>
+            {user && (
+                <div className="flex-none gap-2">
+                    <p>{`Welcome, ${user.firstName}`}</p>
+                    <div className="dropdown dropdown-end">
+                        <label
+                            tabIndex={0}
+                            className="avatar btn btn-circle btn-ghost"
+                        >
+                            <div className="w-10 rounded-full">
+                                <img src={user.photoUrl} alt="User photo" />
+                            </div>
+                        </label>
+                        <ul
+                            tabIndex={0}
+                            className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-base-100 p-2 shadow"
+                        >
+                            <li>
+                                <a className="justify-between">
+                                    Profile
+                                    <span className="badge">New</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a>Settings</a>
+                            </li>
+                            <li>
+                                <a>Logout</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 }

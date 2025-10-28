@@ -1,24 +1,31 @@
 import { useState } from "react";
 import axios from "axios";
+import { BASE_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 function Login() {
     const [email, setEmail] = useState("rupesh@example.com");
     const [password, setPassword] = useState("NewPassword@123");
+    const dispatch = useDispatch();
 
     async function handleLogin() {
         console.log("Logging in with", { email, password });
-        const data = await axios.post(
-            "http://localhost:3000/login",
-            {
-                emailId: email,
-                password,
-            },
-            { withCredentials: true },
-        );
-        console.log(data);
+        const user = await axios
+            .post(
+                BASE_URL + "/login",
+                {
+                    emailId: email,
+                    password,
+                },
+                { withCredentials: true },
+            )
+            .then((res) => res.data.user);
+        dispatch(addUser(user));
+        console.log(user);
     }
     return (
-        <div className="card bg-neutral text-neutral-content w-96">
+        <div className="card w-96 bg-neutral text-neutral-content">
             <div className="card-body items-center text-center">
                 <h2 className="card-title">Login</h2>
 
