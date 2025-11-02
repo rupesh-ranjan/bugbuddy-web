@@ -8,7 +8,7 @@ import { useEffect } from "react";
 function Body() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const userData = useSelector((state) => state.user);
+    const userData = useSelector((state) => state.user.user);
 
     useEffect(() => {
         document.title = "BugBuddy 🐞";

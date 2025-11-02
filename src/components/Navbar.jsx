@@ -18,14 +18,11 @@ function Navbar() {
     return (
         <div className="navbar bg-base-300 px-10">
             <div className="flex-1">
-                <Link
-                    to="/profile"
-                    className="btn btn-ghost text-xl normal-case"
-                >
+                <Link to="/feed" className="btn btn-ghost text-xl normal-case">
                     🐞 BugBuddy 👫
                 </Link>
             </div>
-            {user && (
+            {user ? (
                 <div className="flex-none gap-2">
                     <p>{`Welcome, ${user.firstName}`}</p>
                     <div className="dropdown dropdown-end">
@@ -56,6 +53,10 @@ function Navbar() {
                         </ul>
                     </div>
                 </div>
+            ) : (
+                <Link to="/login" className="btn btn-link">
+                    Login
+                </Link>
             )}
         </div>
     );

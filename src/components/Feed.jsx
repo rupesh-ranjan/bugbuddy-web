@@ -7,7 +7,6 @@ import UserCard from "./UserCard";
 
 function Feed() {
     const feed = useSelector((state) => state.feed.feed);
-    console.log("Current feed state:", feed);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -22,7 +21,6 @@ function Feed() {
                     .catch((error) => {
                         console.error("Error in feed response:", error);
                     });
-                console.log("Feed data:", feed);
                 dispatch(setFeed(feed.data));
             } catch (error) {
                 // TODO: Handle Errors
@@ -31,11 +29,10 @@ function Feed() {
         }
         getFeed();
     }, [dispatch, feed.length]);
-    console.log("Rendering Feed component with feed:", feed);
     return (
         <div>
             {feed.map((user) => (
-                <UserCard key={user.id} user={user} />
+                <UserCard key={user._id} user={user} />
             ))}
         </div>
     );
