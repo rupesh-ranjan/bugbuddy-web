@@ -12,7 +12,6 @@ function Body() {
 
     useEffect(() => {
         document.title = "BugBuddy 🐞";
-
         async function fetchUserData() {
             if (userData) return;
             try {

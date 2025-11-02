@@ -13,7 +13,6 @@ function Login() {
     const navigate = useNavigate();
 
     async function handleLogin() {
-        console.log("Logging in with", { email, password });
         const user = await axios
             .post(
                 BASE_URL + "/login",
@@ -24,7 +23,7 @@ function Login() {
                 { withCredentials: true },
             )
             .then((res) => {
-                navigate("/profile");
+                navigate("/feed");
                 return res.data.user;
             })
             .catch((err) => {
