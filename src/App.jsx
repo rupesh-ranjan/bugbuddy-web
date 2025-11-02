@@ -11,8 +11,8 @@ function App() {
     return (
         <Provider store={appStore}>
             <div className="flex min-h-screen flex-col justify-between">
-                <Navbar />
                 <BrowserRouter>
+                    <Navbar />
                     <Routes>
                         <Route path="/" element={<Body />}>
                             <Route path="/login" element={<Login />} />

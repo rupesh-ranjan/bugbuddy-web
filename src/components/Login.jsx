@@ -3,11 +3,14 @@ import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { useNavigate } from "react-router";
 
 function Login() {
     const [email, setEmail] = useState("rupesh@example.com");
     const [password, setPassword] = useState("NewPassword@123");
+    const [error, setError] = useState(null);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     async function handleLogin() {
         console.log("Logging in with", { email, password });
@@ -20,9 +23,14 @@ function Login() {
                 },
                 { withCredentials: true },
             )
-            .then((res) => res.data.user);
-        dispatch(addUser(user));
-        console.log(user);
+            .then((res) => {
+                navigate("/profile");
+                return res.data.user;
+            })
+            .catch((err) => {
+                setError(err.response?.data || "Login failed");
+            });
+        if (user) dispatch(addUser(user));
     }
     return (
         <div className="card w-96 bg-neutral text-neutral-content">
@@ -68,7 +76,7 @@ function Login() {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </label>
-
+                {error && <p className="text-red-500">{error}</p>}
                 <button className="btn btn-primary" onClick={handleLogin}>
                     Login
                 </button>

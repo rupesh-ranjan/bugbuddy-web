@@ -1,10 +1,10 @@
 function Footer() {
     return (
-        <footer className="footer footer-center bg-base-300 text-base-content gap-4 rounded p-5">
+        <footer className="footer footer-center gap-4 rounded bg-base-300 p-5 text-base-content">
             <nav className="grid grid-flow-col gap-8">
-                <a className="link link-hover">About us</a>
-                <a className="link link-hover">Contact</a>
-                <a className="link link-hover">Jobs</a>
+                <a className="link-hover link">About us</a>
+                <a className="link-hover link">Contact</a>
+                <a className="link-hover link">Jobs</a>
             </nav>
             <nav>
                 <div className="grid grid-flow-col gap-8">
