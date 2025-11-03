@@ -27,7 +27,7 @@ function Body() {
     }, [dispatch, navigate, userData]);
 
     return (
-        <div className="flex flex-grow items-center justify-center">
+        <div className="flex flex-grow items-center justify-center p-8">
             <Outlet />
         </div>
     );

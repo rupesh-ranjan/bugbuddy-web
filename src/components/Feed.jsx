@@ -30,9 +30,14 @@ function Feed() {
         getFeed();
     }, [dispatch, feed.length]);
     return (
-        <div>
+        <div className="flex flex-wrap justify-center gap-6">
             {feed.map((user) => (
-                <UserCard key={user._id} user={user} />
+                <UserCard
+                    key={user._id}
+                    user={user}
+                    btn1={{ text: "Ignore", style: "btn btn-error" }}
+                    btn2={{ text: "Like", style: "btn btn-success px-8" }}
+                />
             ))}
         </div>
     );
