@@ -1,9 +1,9 @@
 import React from "react";
 
-function UserCard({ user, btn1, btn2 }) {
+function UserCard({ user, btn1, btn2, onClick1, onClick2 }) {
     const { firstName, lastName, photoUrl, age, gender, about } = user;
     return (
-        <div className="card bg-base-200 shadow-xl sm:w-20 md:w-96">
+        <div className="card w-64 bg-base-200 shadow-xl sm:w-72 md:w-80">
             <img
                 src={photoUrl}
                 alt={firstName}
@@ -16,10 +16,14 @@ function UserCard({ user, btn1, btn2 }) {
                 <p>{age + " " + gender}</p>
                 <div className="card-actions justify-between">
                     {btn1 && (
-                        <button className={btn1.style}>{btn1.text}</button>
+                        <button className={btn1.style} onClick={onClick1}>
+                            {btn1.text}
+                        </button>
                     )}
                     {btn2 && (
-                        <button className={btn2.style}>{btn2.text}</button>
+                        <button className={btn2.style} onClick={onClick2}>
+                            {btn2.text}
+                        </button>
                     )}
                 </div>
             </div>

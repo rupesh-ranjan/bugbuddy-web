@@ -15,11 +15,13 @@ function Connections() {
     useEffect(() => {
         fetchConnections();
     }, []);
-    return connections.map((connection) => (
-        <div key={connection._id} className="m-4">
-            <UserCard user={connection} />
+    return (
+        <div className="flex flex-wrap justify-center gap-6">
+            {connections.map((user) => (
+                <UserCard key={user._id} user={user} />
+            ))}
         </div>
-    ));
+    );
 }
 
 export default Connections;
