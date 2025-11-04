@@ -9,6 +9,7 @@ import { appStore } from "./utils/appStore.js";
 import Feed from "./components/Feed.jsx";
 import Connections from "./components/Connections.jsx";
 import Requests from "./components/Requests.jsx";
+import SignUp from "./components/SignUp.jsx";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Body />}>
                             <Route path="/login" element={<Login />} />
+                            <Route path="/signup" element={<SignUp />} />
                             <Route path="/feed" element={<Feed />} />
                             <Route path="/profile" element={<Profile />} />
                             <Route

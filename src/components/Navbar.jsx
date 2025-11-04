@@ -2,12 +2,28 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
 import { BASE_URL } from "../utils/constants";
-import { removeUser } from "../utils/userSlice";
+import { addUser, removeUser } from "../utils/userSlice";
+import { useEffect } from "react";
 
 function Navbar() {
     const user = useSelector((state) => state.user.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        async function fetchUserData() {
+            if (user) return;
+            try {
+                const response = await axios.get(BASE_URL + "/profile/view", {
+                    withCredentials: true,
+                });
+                dispatch(addUser(response.data));
+            } catch (error) {
+                // if (error.response.status === 401) navigate("/login");
+            }
+        }
+        fetchUserData();
+    }, [dispatch, navigate, user]);
 
     async function handleLogout() {
         await axios.post(BASE_URL + "/logout", {}, { withCredentials: true });
@@ -22,7 +38,7 @@ function Navbar() {
                     🐞 BugBuddy 👫
                 </Link>
             </div>
-            {user ? (
+            {user && (
                 <div className="flex-none gap-2">
                     <p>{`Welcome, ${user.firstName}`}</p>
                     <div className="dropdown dropdown-end">
@@ -56,10 +72,6 @@ function Navbar() {
                         </ul>
                     </div>
                 </div>
-            ) : (
-                <Link to="/login" className="btn btn-link">
-                    Login
-                </Link>
             )}
         </div>
     );
