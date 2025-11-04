@@ -1,29 +1,34 @@
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { BASE_URL } from "../utils/constants";
 import { addUser, removeUser } from "../utils/userSlice";
 import { useEffect } from "react";
 
 function Navbar() {
+    const location = useLocation();
     const user = useSelector((state) => state.user.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
+        const publicRoutes = ["/login", "/signup", "/"];
+        if (publicRoutes.includes(location.pathname)) return;
+        if (user) return;
+
         async function fetchUserData() {
-            if (user) return;
             try {
-                const response = await axios.get(BASE_URL + "/profile/view", {
+                const res = await axios.get(BASE_URL + "/profile/view", {
                     withCredentials: true,
                 });
-                dispatch(addUser(response.data));
-            } catch (error) {
-                // if (error.response.status === 401) navigate("/login");
+                dispatch(addUser(res.data));
+            } catch {
+                navigate("/login");
             }
         }
+
         fetchUserData();
-    }, [dispatch, navigate, user]);
+    }, [location.pathname, user, dispatch, navigate]);
 
     async function handleLogout() {
         await axios.post(BASE_URL + "/logout", {}, { withCredentials: true });

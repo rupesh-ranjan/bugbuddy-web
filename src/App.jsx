@@ -2,7 +2,7 @@ import Body from "./components/Body.jsx";
 import Footer from "./components/Footer.jsx";
 import Login from "./components/Login.jsx";
 import Navbar from "./components/Navbar.jsx";
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import Profile from "./components/Profile.jsx";
 import { Provider } from "react-redux";
 import { appStore } from "./utils/appStore.js";
@@ -17,10 +17,17 @@ function App() {
             <div className="flex min-h-screen flex-col justify-between">
                 <BrowserRouter>
                     <Navbar />
+
                     <Routes>
-                        <Route path="/" element={<Body />}>
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/signup" element={<SignUp />} />
+                        {/* Public Routes */}
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/signup" element={<SignUp />} />
+
+                        {/* Default route */}
+                        <Route path="/" element={<Navigate to="/login" />} />
+
+                        {/* Protected routes (Body wraps authenticated content) */}
+                        <Route element={<Body />}>
                             <Route path="/feed" element={<Feed />} />
                             <Route path="/profile" element={<Profile />} />
                             <Route
@@ -30,8 +37,9 @@ function App() {
                             <Route path="/requests" element={<Requests />} />
                         </Route>
                     </Routes>
+
+                    <Footer />
                 </BrowserRouter>
-                <Footer />
             </div>
         </Provider>
     );
