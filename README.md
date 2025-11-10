@@ -32,7 +32,7 @@ Built with **React**, **Redux Toolkit**, and **Tailwind CSS**, it offers a moder
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/bugbuddy-frontend.git
+git clone https://github.com/rupesh-ranjan/bugbuddy-web
 cd bugbuddy-frontend
 npm install
 npm run dev
