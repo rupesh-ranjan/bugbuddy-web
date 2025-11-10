@@ -1,49 +1,38 @@
-# BugBuddy
+# 🐞 BugBuddy — Frontend (React.js + Redux Toolkit)
 
-## Connect & Socialise here
+The **BugBuddy Frontend** is a **React.js**-based web application that serves as the user interface for the BugBuddy platform — a social network for tech enthusiasts (“Bugs”) to connect and collaborate (“Buddies”).
 
-- With same mindset
+Built with **React**, **Redux Toolkit**, and **Tailwind CSS**, it offers a modern, responsive, and intuitive user experience.
 
-## AWS deployment
+---
 
-- Frontend
-    - npm install
-    - npm run build
-    - sudo apt update
-    - sudo apt install nginx
-    - sudo systemctl start nginx
-    - sudo systemctl enable nginx
-    - sudo scp -r dist/\* /var/www/html/
-    - Enable port 80
+## 🚀 Features
 
-- Backend
-    - allowed ec2 instance public IP on mongodb server
-    - npm intsall pm2 -g
-    - pm2 start npm --name "bugbuddy-backend" -- start
-    - pm2 logs
-    - pm2 list, pm2 flush <name> , pm2 stop <name>, pm2 delete <name>
-    - config nginx - sudo nano /etc/nginx/sites-available/default
-    - restart nginx - sudo systemctl restart nginx
-    - Modify the BASEURL in frontend project to "/api"
+- 💬 **Interactive Feed:** Browse, post, and engage with the latest community updates.
+- ⚙️ **State Management:** Centralized state handling using **Redux Toolkit**.
+- 📱 **Responsive Design:** Tailwind CSS & Daisy UI for a clean, adaptive interface.
+- 🔗 **API Integration:** Communicates seamlessly with the backend REST APIs.
+- ⚡ **Optimized Performance:** Lazy loading, debounced search, and efficient component rendering.
 
-## Ngxinx config:
+---
 
-- Frontend = http://43.204.96.49/
-- Backend = http://43.204.96.49:7777/
+## 🧩 Tech Stack
 
-- Domain name = devtinder.com => 43.204.96.49
+**Frontend:**  
+- React.js  
+- Redux Toolkit  
+- Tailwind CSS  
+- Daisy UI  
+- Axios (for API requests)  
+- Vite (for fast bundling and development)
 
-- Frontend = devtinder.com
-- Backend = devtinder.com:7777 => devtinder.com/api
+---
 
-- nginx config :
+## 🛠️ Setup Instructions
 
-- server_name 43.204.96.49;
-  location /api/ {
-  proxy_pass http://localhost:7777/; # Pass the request to the Node.js app
-  proxy_http_version 1.1;
-  proxy_set_header Upgrade $http_upgrade;
-  proxy_set_header Connection 'upgrade';
-  proxy_set_header Host $host;
-  proxy_cache_bypass $http_upgrade;
-  }
+### 1. Clone the repository
+```bash
+git clone https://github.com/your-username/bugbuddy-frontend.git
+cd bugbuddy-frontend
+npm install
+npm run dev
